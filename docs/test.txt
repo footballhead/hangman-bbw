@@ -1,0 +1,23 @@
+todo
+
+add spaces between letters
+cap on phrase length
+resizing phrase to fit the screen
+"solve it now" button
+TRY ON BLACKBERRY
+different device sizes
+MUSIC
+polish
+popular phrases?
+max custom size?
+error on custom size screen?
+win/lose stats?
+app icon
+git
+hints
+
+DIFFICULTY IS
+  context
+  number of chances
+  
+[^A-Za-z\n]

@@ -25,9 +25,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.4"
-     inkscape:cx="391.85876"
-     inkscape:cy="600.62711"
+     inkscape:zoom="0.98994949"
+     inkscape:cx="350.78733"
+     inkscape:cy="239.19854"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -44,7 +44,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -64,8 +64,8 @@
        id="rect3338"
        width="169.70563"
        height="169.70563"
-       x="288.90363"
-       y="855.38245" />
+       x="323.90363"
+       y="763.23956" />
     <rect
        style="fill:#ffffff;stroke:#000000"
        id="rect3344"
@@ -326,5 +326,67 @@
        d="M 413.40493,349.29603 390.80277,371.8982"
        id="path4377"
        inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="333.48773"
+       y="915.79688"
+       id="text3545-6"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3547-0"
+         x="333.48773"
+         y="915.79688"
+         style="font-size:30px">H_N_M_N</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 349.53571,802.25506 0,-25.71428 35.00001,0 0.71428,95"
+       id="path3348-2"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccc" />
+    <ellipse
+       style="fill:#ffffff;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none"
+       id="path4371-7"
+       cx="348.82141"
+       cy="814.04083"
+       rx="12.857142"
+       ry="13.928572" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="408.57144"
+       y="787.36218"
+       id="text4213"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4215"
+         x="408.57144"
+         y="787.36218"
+         style="font-size:15px">A B C D  E</tspan><tspan
+         sodipodi:role="line"
+         x="408.57144"
+         y="806.11218"
+         id="tspan4217"
+         style="font-size:15px">F G      I   J</tspan><tspan
+         sodipodi:role="line"
+         x="408.57144"
+         y="824.86218"
+         id="tspan4221"
+         style="font-size:15px">K           O</tspan><tspan
+         sodipodi:role="line"
+         x="408.57144"
+         y="843.61218"
+         id="tspan4225"
+         style="font-size:15px">P Q R  S T</tspan><tspan
+         sodipodi:role="line"
+         x="408.57144"
+         y="862.36218"
+         id="tspan4227"
+         style="font-size:15px">U V W X Y</tspan><tspan
+         sodipodi:role="line"
+         x="408.57144"
+         y="881.11218"
+         id="tspan4229"
+         style="font-size:15px">Z</tspan></text>
   </g>
 </svg>

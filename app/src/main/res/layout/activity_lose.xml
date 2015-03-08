@@ -12,10 +12,12 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="YOU LOSE!"
         android:id="@+id/textView2"
-        android:textSize="100dp"
-        android:layout_marginTop="61dp"
+        android:textSize="70dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/textView5"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:gravity="center" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -31,10 +33,11 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="DERP"
         android:id="@+id/answerText"
-        android:textSize="100dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="44dp"
+        android:textSize="50dp"
+        android:gravity="center"
+        android:layout_below="@+id/textView5"
         android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true" />
 
 </RelativeLayout>

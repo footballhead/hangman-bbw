@@ -1,11 +1,14 @@
 package com.hackathon.michael.hangman;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -39,6 +42,7 @@ public class GameScreen extends ActionBarActivity {
         setContentView(R.layout.activity_game_screen);
 
         registerKeys();
+        registerShowKeyboardButton();
 
         wordDisplayLabel = ( TextView )findViewById( R.id.secretWordLabel );
         gallowsImage = ( ImageView )findViewById( R.id.gallowsImage );
@@ -50,7 +54,7 @@ public class GameScreen extends ActionBarActivity {
         }
     }
 
-
+/*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -72,7 +76,30 @@ public class GameScreen extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }*/
+
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        String keyString = KeyEvent.keyCodeToString( keyCode );
+
+        if ( isKeyStringALetter( keyString ) ) {
+            char letter = getLetterFromKeyString( keyString );
+            guessLetter( letter );
         }
+
+        return super.onKeyUp(keyCode, event);
+    }
+
+    private boolean isKeyStringALetter( String keyString ) {
+        char letter = getLetterFromKeyString( keyString );
+        char letterBefore = keyString.charAt( keyString.length()-2 );
+        return letter >= 'A' && letter <= 'Z' && letterBefore == '_';
+    }
+
+    private char getLetterFromKeyString( String keyString ) {
+        return keyString.charAt( keyString.length()-1 );
+    }
+
 
     private void actOnIntent() throws IOException {
         Bundle extras = getIntent().getExtras();
@@ -103,7 +130,6 @@ public class GameScreen extends ActionBarActivity {
             String word = getRandomWord( R.raw.hard, R.raw.hardh );
             setSecretWord( word );
         } else {
-
             setSecretWord( "DERP" );
         }
     }
@@ -114,6 +140,12 @@ public class GameScreen extends ActionBarActivity {
 
     public void registerButton( int id ) {
         Button button = (Button) findViewById( id );
+
+        if ( button == null ) {
+            System.out.println( "WARNING: Couldn't find button to register!" );
+            return;
+        }
+
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Button b = (Button)v;
@@ -124,20 +156,30 @@ public class GameScreen extends ActionBarActivity {
                     b.setBackgroundColor(0xFF00FF00);
                 } else {
                     b.setBackgroundColor(0xFFFF0000);
+                    b.setTextColor( 0xffffffff );
                 }
             }
         });
     }
 
     public boolean guessLetter( char letter ) {
-        if ( secretWord.indexOf( letter ) == -1 ) {
+        boolean rightGuess;
+
+        if ( !isGuessRight( letter ) ) {
             System.out.println( "WRONG!" );
             addWrongGuess( letter );
-            return false;
+            rightGuess = false;
         } else {
             revealLetter( letter );
-            return true;
+            rightGuess = true;
         }
+
+        removeFromRemainingText( letter );
+        return rightGuess;
+    }
+
+    private boolean isGuessRight( char guess ) {
+        return secretWord.indexOf( guess ) != -1;
     }
 
     public void setSecretWord( String word ) {
@@ -219,13 +261,13 @@ public class GameScreen extends ActionBarActivity {
 
     public void updateImage( int wrong ) {
         switch ( wrong ) {
-            case 0: gallowsImage.setImageResource( R.mipmap.gallows0 ); break;
-            case 1: gallowsImage.setImageResource( R.mipmap.gallows1 ); break;
-            case 2: gallowsImage.setImageResource( R.mipmap.gallows2 ); break;
-            case 3: gallowsImage.setImageResource( R.mipmap.gallows3 ); break;
-            case 4: gallowsImage.setImageResource( R.mipmap.gallows4 ); break;
-            case 5: gallowsImage.setImageResource( R.mipmap.gallows5 ); break;
-            case 6: gallowsImage.setImageResource( R.mipmap.gallows6 ); break;
+            case 0: gallowsImage.setImageResource( R.drawable.gallows0 ); break;
+            case 1: gallowsImage.setImageResource( R.drawable.gallows1 ); break;
+            case 2: gallowsImage.setImageResource( R.drawable.gallows2 ); break;
+            case 3: gallowsImage.setImageResource( R.drawable.gallows3 ); break;
+            case 4: gallowsImage.setImageResource( R.drawable.gallows4 ); break;
+            case 5: gallowsImage.setImageResource( R.drawable.gallows5 ); break;
+            case 6: gallowsImage.setImageResource( R.drawable.gallows6 ); break;
         }
     }
 
@@ -256,30 +298,6 @@ public class GameScreen extends ActionBarActivity {
         registerButton( R.id.button23 );
         registerButton( R.id.button24 );
         registerButton( R.id.button25 );
-    }
-
-    private String getRandomWord( int id ) throws IOException {
-        InputStream input = getResources().openRawResource( id );
-        ArrayList<String> list = new ArrayList<>();
-        String word = "";
-
-        int c = input.read();
-        while ( c != -1 ) {
-            if ( c == '\n' ) {
-                list.add( word );
-                word = "";
-            } else {
-                word += ( char )c;
-            }
-
-            c = input.read();
-        }
-
-        input.close();
-
-        Random random = new Random();
-        int randomInt = random.nextInt( list.size() );
-        return list.get( randomInt );
     }
 
     private String getRandomWord( int fileID, int headerID ) throws IOException {
@@ -337,4 +355,40 @@ public class GameScreen extends ActionBarActivity {
 
         return Integer.parseInt( numberString );
     }
+
+    private void registerShowKeyboardButton() {
+        Button button = (Button) findViewById( R.id.showKeyboardButton );
+
+        if ( button == null ) {
+            System.out.println( "WARNING: Can't register keyboard toggle!" );
+            return;
+        }
+
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                System.out.println( "SHOW KEYBOARD" );
+                InputMethodManager inputMethodManager=(InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+            }
+        });
+    }
+
+    private void removeFromRemainingText( char toRemove ) {
+        TextView remaining = ( TextView )findViewById( R.id.remainingText );
+        if ( remaining == null ) return;
+
+        String remainingString = remaining.getText().toString();
+
+        char decomposed[] = remainingString.toCharArray();
+        for ( int i = 0; i < decomposed.length; i++ ) {
+            if ( decomposed[i] == toRemove ) {
+                decomposed[i] = ' ';
+                remaining.setText( new String( decomposed ) );
+                return;
+            }
+        }
+
+        System.out.println( "WARNING: Reremoving " + toRemove );
+    }
+
 }

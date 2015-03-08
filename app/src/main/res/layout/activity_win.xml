@@ -12,7 +12,9 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="YOU WIN!"
         android:id="@+id/textView"
-        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:textSize="100dp" />
+        android:textSize="100dp"
+        android:gravity="center"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true" />
 </RelativeLayout>

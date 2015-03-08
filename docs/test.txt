@@ -13,8 +13,12 @@ max custom size?
 error on custom size screen?
 win/lose stats?
 app icon
-git
 hints
+SCRABBLE DICTIONARY
+	NA: TWL
+	Rest: Sowpods
+check _ before letter
+memory issues?
 
 DIFFICULTY IS
   context

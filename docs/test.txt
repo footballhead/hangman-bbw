@@ -3,8 +3,6 @@ todo
 add spaces between letters
 cap on phrase length
 resizing phrase to fit the screen
-"solve it now" button
-TRY ON BLACKBERRY
 different device sizes
 MUSIC
 polish
@@ -16,9 +14,13 @@ app icon
 hints
 SCRABBLE DICTIONARY
 	NA: TWL
-	Rest: Sowpods
-check _ before letter
+	Rest: Sowpods <===== USING SOWPODS AS WE SPEAK!
 memory issues?
+dicitonary definition on win screen?
+
+extra difficulty (easy, normal, hard, VERY HARD?)
+different difficulty system? (FUN VS FRUSTRATING?)
+customizability wrt options? (number of guesses, word difficulty parameters, etc.)
 
 DIFFICULTY IS
   context

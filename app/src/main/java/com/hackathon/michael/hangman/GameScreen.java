@@ -27,10 +27,13 @@ public class GameScreen extends ActionBarActivity {
     final static String NORMAL_DIFFICULTY = "NORMAL";
     final static String HARD_DIFFICULTY = "HARD";
 
+    final static String STATE_SECRET_WORD = "SECRET_WORD";
+    final static String STATE_WORD_DISPLAY = "WORD_DISPLAY";
+    final static String STATE_WRONG_GUESSES = "WRONG_GUESSES";
+
     String secretWord = "";
     String wordDisplay = "";
     String wrongGuesses = "";
-    String difficulty = NORMAL_DIFFICULTY;
 
     TextView wordDisplayLabel;
     ImageView gallowsImage;
@@ -54,29 +57,28 @@ public class GameScreen extends ActionBarActivity {
         }
     }
 
-/*
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_game_screen, menu);
-        return true;
+    protected void onSaveInstanceState( Bundle state ) {
+        state.putString( STATE_SECRET_WORD, secretWord );
+        state.putString( STATE_WORD_DISPLAY, wordDisplay );
+        state.putString( STATE_WRONG_GUESSES, wrongGuesses );
+
     }
 
-
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+    protected void onRestoreInstanceState( Bundle state ) {
+        secretWord = state.getString( STATE_SECRET_WORD );
+        wordDisplay = state.getString( STATE_WORD_DISPLAY );
+        wrongGuesses = state.getString( STATE_WRONG_GUESSES );
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        updateImage( getNumOfWrongGuesses() );
+        wordDisplayLabel.setText( wordDisplay );
+
+        for ( int i = 0; i < wrongGuesses.length(); i++ ) {
+            removeFromRemainingText( wrongGuesses.charAt( i ) );
         }
+    }
 
-        return super.onOptionsItemSelected(item);
-    }*/
 
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
@@ -104,7 +106,7 @@ public class GameScreen extends ActionBarActivity {
     private void actOnIntent() throws IOException {
         Bundle extras = getIntent().getExtras();
         if ( extras != null ) {
-            difficulty = extras.getString( DIFFICULTY_KEY, null );
+            String difficulty = extras.getString( DIFFICULTY_KEY, null );
             if ( difficulty != null ) {
                 initFromDifficulty( difficulty );
             } else {
@@ -119,7 +121,6 @@ public class GameScreen extends ActionBarActivity {
     }
 
     private void initFromDifficulty( String difficulty ) throws IOException {
-        this.difficulty = difficulty;
         if ( difficulty.equals( EASY_DIFFICULTY ) ) {
             String word = getRandomWord( R.raw.easy, R.raw.easyh );
             setSecretWord( word );
@@ -219,7 +220,7 @@ public class GameScreen extends ActionBarActivity {
         wrongGuesses += letter;
 
         checkLoseCondition();
-        updateImage(getNumOfGuesses());
+        updateImage(getNumOfWrongGuesses());
     }
 
     public boolean hasWon() {
@@ -227,10 +228,10 @@ public class GameScreen extends ActionBarActivity {
     }
 
     public boolean hasLost() {
-        return getNumOfGuesses() >= 6;
+        return getNumOfWrongGuesses() >= 6;
     }
 
-    public int getNumOfGuesses() {
+    public int getNumOfWrongGuesses() {
         return wrongGuesses.length();
     }
 
@@ -272,7 +273,7 @@ public class GameScreen extends ActionBarActivity {
     }
 
     private void registerKeys() {
-        registerButton( R.id.abutton );
+        /*registerButton( R.id.abutton );
         registerButton( R.id.bbutton );
         registerButton( R.id.button2 );
         registerButton( R.id.button3 );
@@ -297,7 +298,7 @@ public class GameScreen extends ActionBarActivity {
         registerButton( R.id.button22 );
         registerButton( R.id.button23 );
         registerButton( R.id.button24 );
-        registerButton( R.id.button25 );
+        registerButton( R.id.button25 );*/
     }
 
     private String getRandomWord( int fileID, int headerID ) throws IOException {

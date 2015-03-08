@@ -39,12 +39,17 @@ def printCountToFile( lst, filename ):
 
 
 def main():
+	if len( sys.argv ) < 2:
+		print( "Usage: python %s [dict-file]" % sys.argv[0] )
+		return 1
+
 	easyWords = []
 	normalWords = []
 	hardWords = []
+	dictFileName = sys.argv[1]
 
-	with open( "words.txt" ) as wordsfile:
-		print( "Parsing and sorting words.txt..." )
+	with open( dictFileName ) as wordsfile:
+		print( "Parsing and sorting %s..." % dictFileName )
 
 		line = wordsfile.readline()
 		while line:

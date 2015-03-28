@@ -3,7 +3,7 @@ todo
 add spaces between letters
 cap on phrase length
 resizing phrase to fit the screen
-different device sizes
+different device sizes (e.g. TABLET INTERFACE)
 MUSIC
 polish
 popular phrases?
@@ -17,10 +17,13 @@ SCRABBLE DICTIONARY
 	Rest: Sowpods <===== USING SOWPODS AS WE SPEAK!
 memory issues?
 dicitonary definition on win screen?
+layout characters remaining by QWERTY?
 
 extra difficulty (easy, normal, hard, VERY HARD?)
 different difficulty system? (FUN VS FRUSTRATING?)
 customizability wrt options? (number of guesses, word difficulty parameters, etc.)
+
+"popup" when pressing key that's already been pressed
 
 DIFFICULTY IS
   context

@@ -47,7 +47,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Custom"
+        android:text="Custom Word"
         android:id="@+id/customButton"
         android:layout_below="@+id/hardButton"
         android:layout_alignParentEnd="true"

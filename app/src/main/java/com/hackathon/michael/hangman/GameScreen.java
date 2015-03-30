@@ -81,12 +81,10 @@ public class GameScreen extends ActionBarActivity {
                 showToast( "Already guessed!" );
             } else {
                 if ( game.guess( letter ) ) {
-                    showToast("RIGHT!");
                     updateDisplay();
                     removeFromRemainingText( letter );
                     checkWinCondition();
                 } else {
-                    showToast("WRONG!");
                     updateImage();
                     removeFromRemainingText( letter );
                     checkLoseCondition();

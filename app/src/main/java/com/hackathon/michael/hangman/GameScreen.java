@@ -182,6 +182,8 @@ public class GameScreen extends ActionBarActivity {
             case 4: gallowsImage.setImageResource( R.drawable.gallows4 ); break;
             case 5: gallowsImage.setImageResource( R.drawable.gallows5 ); break;
             case 6: gallowsImage.setImageResource( R.drawable.gallows6 ); break;
+            case 7: gallowsImage.setImageResource( R.drawable.gallows7 ); break;
+            case 8: gallowsImage.setImageResource( R.drawable.gallows8 ); break;
         }
     }
 

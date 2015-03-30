@@ -79,7 +79,7 @@ public class GameState {
      * @return `true` if lost, `false` otherwise.
      */
     public boolean hasLost() {
-        return getNumOfWrongGuesses() >= 6;
+        return getNumOfWrongGuesses() >= 8;
     }
 
     /**

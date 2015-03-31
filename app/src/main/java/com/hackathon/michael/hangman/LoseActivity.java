@@ -22,6 +22,13 @@ public class LoseActivity extends ActionBarActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_lose);
 
+        Button b = ( Button )findViewById( R.id.mainMenuButton );
+        b.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         displayAnswer();
     }
 

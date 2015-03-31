@@ -102,5 +102,6 @@ public class CustomWordActivity extends ActionBarActivity {
         Intent intent = new Intent( this, GameScreen.class );
         intent.putExtra( GameScreen.CUSTOM_WORD_KEY, word );
         startActivity( intent );
+        finish();
     }
 }

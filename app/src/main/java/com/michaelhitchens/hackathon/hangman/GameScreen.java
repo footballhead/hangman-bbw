@@ -172,6 +172,10 @@ public class GameScreen extends ActionBarActivity {
     public void showWinScreen() {
         Intent intent = new Intent( this, WinActivity.class );
         startActivity( intent );
+        if ( getResources().getBoolean( R.bool.force_keyboard ) ) {
+            InputMethodManager inputMethodManager=(InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+        }
         finish();
     }
 
@@ -179,6 +183,10 @@ public class GameScreen extends ActionBarActivity {
         Intent intent = new Intent( this, LoseActivity.class );
         intent.putExtra( LoseActivity.ANSWER_KEY, game.getSecretWordOnLoss() );
         startActivity( intent );
+        if ( getResources().getBoolean( R.bool.force_keyboard ) ) {
+            InputMethodManager inputMethodManager=(InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+        }
         finish();
     }
 

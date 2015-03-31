@@ -17,6 +17,10 @@ public class WinActivity extends ActionBarActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_win);
 
+        if ( getResources().getBoolean(R.bool.portrait_only) ) {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        }
+
         Button b = ( Button )findViewById( R.id.mainMenuButton );
         b.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

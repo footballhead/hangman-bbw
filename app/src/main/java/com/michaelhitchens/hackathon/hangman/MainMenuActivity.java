@@ -18,6 +18,10 @@ public class MainMenuActivity extends ActionBarActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main_menu);
 
+        if ( getResources().getBoolean(R.bool.portrait_only) ) {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        }
+
         registerButton( R.id.easyButton, GameScreen.EASY_DIFFICULTY );
         registerButton( R.id.normalButton, GameScreen.NORMAL_DIFFICULTY );
         registerButton( R.id.hardButton, GameScreen.HARD_DIFFICULTY );

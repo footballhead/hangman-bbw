@@ -41,8 +41,10 @@ public class GameScreen extends ActionBarActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_game_screen);
 
-        if(getResources().getBoolean(R.bool.portrait_only)){
+        if ( getResources().getBoolean(R.bool.portrait_only) ) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        } else if ( getResources().getBoolean(R.bool.landscape_only) ){
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         }
 
         WordRetriever.setResources( getResources() );

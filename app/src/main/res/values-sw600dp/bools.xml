@@ -2,4 +2,5 @@
 <resources>
     <bool name="portrait_only">false</bool>
     <bool name="landscape_only">true</bool>
+    <bool name="force_keyboard">false</bool>
 </resources>

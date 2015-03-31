@@ -50,6 +50,12 @@ public class GameScreen extends ActionBarActivity {
         WordRetriever.setResources( getResources() );
 
         registerShowKeyboardButton();
+        registerVirtualKeyboard();
+
+        if ( getResources().getBoolean( R.bool.force_keyboard ) ) {
+            InputMethodManager inputMethodManager=(InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+        }
 
         wordDisplayLabel = ( TextView )findViewById( R.id.secretWordLabel );
         gallowsImage = ( ImageView )findViewById( R.id.gallowsImage );
@@ -250,6 +256,62 @@ public class GameScreen extends ActionBarActivity {
         for ( int i = 0; i < rightGuesses.length(); i++ ) {
             removeFromRemainingText( rightGuesses.charAt( i ) );
         }
+    }
+
+    private void registerVirtualKeyboard() {
+        registerLetterButton( R.id.button_a );
+        registerLetterButton( R.id.button_b );
+        registerLetterButton( R.id.button_c );
+        registerLetterButton( R.id.button_d );
+        registerLetterButton( R.id.button_e );
+        registerLetterButton( R.id.button_f );
+        registerLetterButton( R.id.button_g );
+        registerLetterButton( R.id.button_h );
+        registerLetterButton( R.id.button_i );
+        registerLetterButton( R.id.button_j );
+        registerLetterButton( R.id.button_k );
+        registerLetterButton( R.id.button_l );
+        registerLetterButton( R.id.button_m );
+        registerLetterButton( R.id.button_n );
+        registerLetterButton( R.id.button_o );
+        registerLetterButton( R.id.button_p );
+        registerLetterButton( R.id.button_q );
+        registerLetterButton( R.id.button_r );
+        registerLetterButton( R.id.button_s );
+        registerLetterButton( R.id.button_t );
+        registerLetterButton( R.id.button_u );
+        registerLetterButton( R.id.button_v );
+        registerLetterButton( R.id.button_w );
+        registerLetterButton( R.id.button_x );
+        registerLetterButton( R.id.button_y );
+        registerLetterButton( R.id.button_z );
+    }
+
+    private void registerLetterButton( int id ) {
+        Button button = (Button) findViewById( id );
+
+        if ( button == null ) return;
+
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Button b = (Button)v;
+                char letter = b.getText().charAt( 0 );
+
+                if ( game.isAlreadyGuessed( letter ) ) {
+                    showToast( "Already guessed!" );
+                } else {
+                    if ( game.guess( letter ) ) {
+                        updateDisplay();
+                        b.setVisibility(View.INVISIBLE);
+                        checkWinCondition();
+                    } else {
+                        updateImage();
+                        b.setVisibility(View.INVISIBLE);
+                        checkLoseCondition();
+                    }
+                }
+            }
+        });
     }
 
 }

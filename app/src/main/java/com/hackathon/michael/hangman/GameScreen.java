@@ -2,6 +2,7 @@ package com.hackathon.michael.hangman;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -39,6 +40,10 @@ public class GameScreen extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_game_screen);
+
+        if(getResources().getBoolean(R.bool.portrait_only)){
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        }
 
         WordRetriever.setResources( getResources() );
 

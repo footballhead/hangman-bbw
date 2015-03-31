@@ -1,6 +1,7 @@
 package com.hackathon.michael.hangman;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -17,6 +18,10 @@ public class CustomWordActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_custom_word);
+
+        if(getResources().getBoolean(R.bool.portrait_only)){
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        }
 
         Button button = ( Button )findViewById( R.id.confirmButton );
         button.setOnClickListener(new View.OnClickListener() {

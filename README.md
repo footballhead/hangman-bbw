@@ -22,3 +22,7 @@ storePassword store_password
 ```
 
 `storeFile` is relative to `.keystore`, so this example assumes `.keystore/keystore.jks` exists.
+
+## Generating the dictionary
+
+See `scripts/sortwords.py`.

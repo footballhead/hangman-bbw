@@ -1,11 +1,19 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
+//
+// For docs, see https://developer.android.com/studio/build/index.html
+
+// https://stackoverflow.com/questions/25769536/how-when-to-generate-gradle-wrapper-files/25770202
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.1'
+}
 
 buildscript {
     repositories {
+        google()
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:1.2.0'
+        classpath 'com.android.tools.build:gradle:3.0.1'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -14,6 +22,7 @@ buildscript {
 
 allprojects {
     repositories {
+        google()
         jcenter()
     }
 }

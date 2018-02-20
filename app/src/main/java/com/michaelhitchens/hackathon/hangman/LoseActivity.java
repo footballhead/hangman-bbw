@@ -3,7 +3,7 @@ package com.michaelhitchens.hackathon.hangman;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,7 +13,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 
-public class LoseActivity extends ActionBarActivity {
+public class LoseActivity extends AppCompatActivity {
     final public static String ANSWER_KEY = "ANSWER";
 
     @Override

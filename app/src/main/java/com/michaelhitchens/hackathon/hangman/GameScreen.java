@@ -3,7 +3,7 @@ package com.michaelhitchens.hackathon.hangman;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 
-public class GameScreen extends ActionBarActivity {
+public class GameScreen extends AppCompatActivity {
     final static String DIFFICULTY_KEY = "GAME_DIFFICULTY";
     final static String CUSTOM_WORD_KEY = "SECRET_WORD";
 

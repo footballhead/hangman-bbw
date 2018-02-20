@@ -1,7 +1,7 @@
 package com.michaelhitchens.hackathon.hangman;
 
 import android.content.pm.ActivityInfo;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.Button;
 
 
-public class WinActivity extends ActionBarActivity {
+public class WinActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -106,8 +106,8 @@ final class GameState {
      *
      * @return The secret word when you lose, or `null` otherwise.
      */
-    String getSecretWordOnLoss() {
-        return ( hasLost() ? secretWord : null );
+    String getSecretWord() {
+        return secretWord;
     }
 
 

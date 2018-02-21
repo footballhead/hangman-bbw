@@ -2,7 +2,6 @@ package com.michaelhitchens.hackathon.hangman;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -13,8 +12,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.io.IOException;
 
 public final class GameScreen extends AppCompatActivity {
     final private static String CUSTOM_WORD_KEY = "SECRET_WORD";
@@ -117,13 +114,13 @@ public final class GameScreen extends AppCompatActivity {
     }
 
     public void showWinScreen() {
-        startActivity(new Intent(this, WinActivity.class));
+        startActivity(ResultActivity.intentFromAnswer(this, "YOU WIN!", game.getSecretWord()));
         PropertyEnforcer.enforceSoftKeyboard(this);
         finish();
     }
 
     public void showLoseScreen() {
-        startActivity(LoseActivity.intentFromAnswer(this, game.getSecretWordOnLoss()));
+        startActivity(ResultActivity.intentFromAnswer(this, "YOU LOSE!", game.getSecretWord()));
         PropertyEnforcer.enforceSoftKeyboard(this);
         finish();
     }

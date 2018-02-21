@@ -1,60 +1,49 @@
 package com.michaelhitchens.hackathon.hangman;
 
-
 import android.content.res.Resources;
 
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Random;
 
 /**
  * Interface for getting words from the word files.
  */
-public class WordRetriever {
-    /** The Resources instance we use to read files */
-    private static Resources res;
-
-/*******************************************************************************
-    PUBLIC INTERFACE
-*******************************************************************************/
-
+final class WordRetriever {
     /**
-     * Register the Resources object we'll use to read files.
+     * Get a random word for the given difficulty.
      *
-     * @param res The app Resources object.
+     * @return A random word
      */
-    public static void setResources( Resources res ) {
-        WordRetriever.res = res;
-    }
+    static String getWord(Resources res, Difficulty difficulty) {
+        try {
+            // Read the number of lines in the word file (stored in the "header").
+            int numLines = readNumLines(res, difficulty.getHeaderId());
 
-    /**
-     * Get a random easy word.
-     *
-     * @return A random easy word
-     * @throws IOException if fail to read word files
-     */
-    public static String getEasyWord() throws IOException {
-        return getRandomWord( R.raw.easy, R.raw.easyh );
-    }
+            // Choose a random line using numLines as a bound.
+            // (+1 because Random returns an open interval)
+            Random random = new Random();
+            int randomLine = random.nextInt(numLines + 1);
 
-    /**
-     * Get a random normal word.
-     *
-     * @return A random normal word
-     * @throws IOException if fail to read word files
-     */
-    public static String getNormalWord() throws IOException {
-        return getRandomWord( R.raw.normal, R.raw.normalh );
-    }
+            // Open word file
+            BufferedReader input = new BufferedReader(
+                    new InputStreamReader(res.openRawResource(difficulty.getFileId())));
 
-    /**
-     * Get a random hard word.
-     *
-     * @return A random hard word
-     * @throws IOException if fail to read word files
-     */
-    public static String getHardWord() throws IOException {
-        return getRandomWord( R.raw.hard, R.raw.hardh );
+            // Zoom to the line we want, read it, then return it.
+            for (int i = 0; i < randomLine; i++) {
+                input.readLine();
+            }
+            String word = input.readLine();
+
+            input.close();
+
+            return word;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return "IOEXCEPTION";
     }
 
 /*******************************************************************************
@@ -62,73 +51,17 @@ public class WordRetriever {
 *******************************************************************************/
 
     /**
-     * Get a random word from a word file.
-     *
-     * @param fileID The file with one word per line.
-     * @param headerID The file with the number of lines in `fileID`.
-     * @return A random word from the word file.
-     * @throws IOException if fail to read word files
-     */
-    private static String getRandomWord( int fileID, int headerID )
-            throws IOException
-    {
-        int currentLine = 1;
-        Random random = new Random();
-        String word = "";
-
-        // read number of lines in word file (stored in "header")
-        int numLines = readNumLines( headerID );
-
-        // choose a random line using numLines as a bound (+1 because open interval)
-        int randomLine = random.nextInt( numLines+1 );
-
-        // open word file
-        InputStream input = res.openRawResource( fileID );
-
-        // zoom to the line we want, read it, then break
-        int c = input.read();
-        while ( c != -1 ) {
-            if ( currentLine == randomLine ) {
-                if ( c == '\n' ) {
-                    break;
-                } else {
-                    word += ( char )c;
-                }
-            } else {
-                if ( c == '\n' ) currentLine++;
-            }
-
-            c = input.read();
-        }
-
-
-        input.close();
-
-        return word;
-    }
-
-    /**
      * Read the number of lines from the header file.
      *
+     * @param res The app resources manager
      * @param id The header file ID.
      * @return Then number of lines in the corresponding word file.
      * @throws IOException if fail to read the file
      */
-    private static int readNumLines( int id ) throws IOException {
-        InputStream input = res.openRawResource( id );
-        String numberString = "";
-
-        int c;
-        while ( ( c = input.read() ) != -1 ) {
-            if ( c == '\n' ) {
-                break;
-            } else {
-                numberString += ( char )c;
-            }
-        }
-
+    private static int readNumLines(Resources res, int id) throws IOException {
+        BufferedReader input = new BufferedReader(new InputStreamReader(res.openRawResource(id)));
+        String numberString = input.readLine();
         input.close();
-
-        return Integer.parseInt( numberString );
+        return Integer.parseInt(numberString);
     }
 }

@@ -5,7 +5,7 @@ import android.os.Bundle;
 /**
  * Holds the secret word and handles guessing.
  */
-public class GameState {
+final class GameState {
     /** The state key used to store the secret word */
     final private static String STATE_SECRET_WORD = "SECRET_WORD";
     /** The state key used to store the wrong guesses the user made */
@@ -32,7 +32,7 @@ public class GameState {
      *
      * @param word The word the user is trying to guess.
      */
-    public GameState( String word ) {
+    GameState( String word ) {
         word = word.toUpperCase().trim();
 
         secretWord = word;
@@ -48,7 +48,7 @@ public class GameState {
      * @return `true` if guess is right and reveals new characters, `false`
      *         otherwise.
      */
-    public boolean guess( char letter ) {
+    boolean guess( char letter ) {
         if ( isAlreadyGuessed( letter ) ) return false;
 
         boolean rightGuess = true;
@@ -69,8 +69,8 @@ public class GameState {
      *
      * @return `true` if won, `false` otherwise.
      */
-    public boolean hasWon() {
-        return wordDisplay.indexOf( "_" ) == -1;
+    boolean hasWon() {
+        return wordDisplay.indexOf('_') == -1;
     }
 
     /**
@@ -78,7 +78,7 @@ public class GameState {
      *
      * @return `true` if lost, `false` otherwise.
      */
-    public boolean hasLost() {
+    boolean hasLost() {
         return getNumOfWrongGuesses() >= 8;
     }
 
@@ -87,7 +87,7 @@ public class GameState {
      *
      * @return The number of wrong guesses.
      */
-    public int getNumOfWrongGuesses() {
+    int getNumOfWrongGuesses() {
         return wrongGuesses.length();
     }
 
@@ -96,7 +96,7 @@ public class GameState {
      *
      * @return `true` if guessed, `false` otherwise
      */
-    public boolean isAlreadyGuessed( char letter ) {
+    boolean isAlreadyGuessed( char letter ) {
         return rightGuesses.indexOf( letter ) != -1 ||
                 wrongGuesses.indexOf( letter ) != -1;
     }
@@ -106,7 +106,7 @@ public class GameState {
      *
      * @return The secret word when you lose, or `null` otherwise.
      */
-    public String getSecretWordOnLoss() {
+    String getSecretWordOnLoss() {
         return ( hasLost() ? secretWord : null );
     }
 
@@ -116,7 +116,7 @@ public class GameState {
      *
      * @return The obfuscated word display
      */
-    public String getDisplay() {
+    String getDisplay() {
         return wordDisplay;
     }
 
@@ -125,7 +125,7 @@ public class GameState {
      *
      * @return All wrong guesses
      */
-    public String getWrongGuesses() {
+    String getWrongGuesses() {
         return wrongGuesses;
     }
 
@@ -134,7 +134,7 @@ public class GameState {
      *
      * @return All right guesses
      */
-    public String getRightGuesses() {
+    String getRightGuesses() {
         return rightGuesses;
     }
 
@@ -146,7 +146,7 @@ public class GameState {
      *
      * @param state The dictionary to store the state in.
      */
-    public void saveState( Bundle state ) {
+    void saveState( Bundle state ) {
         state.putString( STATE_SECRET_WORD, secretWord );
         state.putString( STATE_WRONG_GUESSES, wrongGuesses );
         state.putString( STATE_RIGHT_GUESSES, rightGuesses );
@@ -161,7 +161,7 @@ public class GameState {
      *
      * @param state The dictionary to load state from.
      */
-    public void loadState( Bundle state ) {
+    void loadState( Bundle state ) {
         secretWord = state.getString( STATE_SECRET_WORD );
         wrongGuesses = state.getString( STATE_WRONG_GUESSES );
         rightGuesses = state.getString( STATE_RIGHT_GUESSES );
